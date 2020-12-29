@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap'
-import { login } from '../actions/auth'
-import { AuthContext } from '../contexts/AuthContext'
+import { reset } from '../actions/auth'
 import AppNavbar from './navbar';
 
-class Login extends Component {
-
-    static contextType = AuthContext
+class Reset extends Component {
 
     state = { 
         msg : null,
@@ -22,18 +19,18 @@ class Login extends Component {
 
     componentDidUpdate(){
         if(this.context.isAuthenticated){
-            this.props.history.push('/')
+            this.props.history.push('/login')
         }
     }
 
     onSubmit = e => {
         e.preventDefault();
 
-        const {password, email, token} = this.state;
-        const data = {password, email, token};
+        const {email, token} = this.state;
+        const data = {email, token};
 
         //Attempt to login
-        login(data, res => {
+        reset(data, res => {
             console.log(res)
             if(res.data.success){
                 this.setState({
@@ -54,34 +51,30 @@ class Login extends Component {
         return ( 
             <div>
             <AppNavbar/>
-            <Form onSubmit={this.onSubmit} id="login">
+            <Form onSubmit={this.onSubmit} id="reset">
 
             {this.state.msg ? (
                 <Alert variant={this.state.variant}>{this.state.msg}</Alert>
             ) : null }
 
             <Form.Group>
-              <h4>Log In</h4>
+              <h4>Reset Password</h4>
             </Form.Group>
 
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control name="email" onChange={this.onChange} type="email" placeholder="Enter email" />
               </Form.Group>
-          
-              <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control name="password" onChange={this.onChange} type="password" placeholder="Password" />
-              </Form.Group>
 
-              <Button variant="dark" type="submit">
+              {/*<Button variant="dark" type="submit">
                   Submit
-              </Button> <hr/>
-                <a className="forget" href="/reset">Forget Password</a>
+                </Button> <hr/> */}
+
+                <a className="forget" href="/reset">Reset Password</a>
           </Form>
             </div>
         );
     }
 }
  
-export default Login;
+export default Reset;

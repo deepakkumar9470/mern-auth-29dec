@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-// Create new schema
+// Create new Schema
 const UserSchema = new Schema({
     email : {
         type : String,
@@ -16,10 +16,14 @@ const UserSchema = new Schema({
         type : String,
         required : true
     },
-    date_joined : {
+    resetToken : {
+      type : String,
+      expireToken : Date,
+    },
+    createdAt : {
         type : Date,
         default : Date.now
     }
 })
 
-module.exports = User = mongoose.model('user', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);

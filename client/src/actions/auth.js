@@ -52,3 +52,24 @@ export const register = (user, callback) => {
         })
         .catch(err => console.log(err))
 }
+
+
+// Reset Password
+export const reset = (user, callback) => {
+    const {email} = user;
+    //Request body
+    const body = JSON.stringify({email})
+
+    axios
+        .post('/api/auth/reset', body, config)
+        .then(res => {
+            if(res.data.success){
+                localStorage.setItem('token', res.data.token)
+            }
+
+            if(typeof callback == "function"){
+                callback(res)
+            }
+        })
+        .catch(err => console.log(err))
+}

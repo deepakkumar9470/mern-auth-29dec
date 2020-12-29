@@ -5,6 +5,7 @@ import { login } from './actions/auth'
 import Register from './components/register';
 import Login from './components/login';
 import Home from './components/home';
+import Reset from './components/Reset';
 
 const Route = require('react-router-dom').Route;
 
@@ -34,6 +35,7 @@ class Routes extends Component {
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
+                <Route exact path="/reset" component={Reset}/>
             </Router>
          );
     }

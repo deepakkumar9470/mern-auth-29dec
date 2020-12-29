@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const config = require('config')
+const crypto = require("crypto")
 const express = require('express')
+const User = require('../models/User')
 const router = express.Router()
 
 router.post('/', (req, res) => {
@@ -82,6 +84,34 @@ router.post('/', (req, res) => {
                 })
         })
     }
+})
+
+// For Forget Password
+
+router.post('/reset',(req, res)=>{
+   crypto.randomBytes(32, (err, buffer)=>{
+       if(err) console.log(err);
+       const token = buffer.toString("hex");
+       User.findOne({email : req.body.email})
+       .then(user=>{
+           if(!user){
+               return res.status(422).json({error : "User doesn't exist with that email"})
+           }
+           user.resetToken = token;
+           user.expireToken = Date.now() + 900000;
+           user.save().then((result)=>{
+               transporter.sendMail({
+                to : user.email,
+                from : "no-reply@insta.com",
+                subject : "password-rest",
+                html : 
+                `<p>You requested for password reset</p>
+                <h5> <a href="http://localhost:3000/reset/${token}">Link</a>to reset password</h5>`
+               })
+               res.json({message : "Check your email.."})
+           })
+       })
+   })
 })
 
 module.exports = router;

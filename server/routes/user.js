@@ -2,10 +2,11 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const config = require('config')
 const express = require('express')
+const crypto = require("crypto")
 const router = express.Router()
 
 // User model
-const User = require('../../models/User')
+const User = require('../models/User')
 
 router.post('/', (req, res) => {
 
@@ -58,5 +59,11 @@ router.post('/', (req, res) => {
 
       })
 })
+
+
+
+// For resetting password
+
+
 
 module.exports = router

@@ -11,7 +11,7 @@ class Home extends Component {
                 <Fragment>
                     <AppNavbar/>
                     <div class="homeCenter">
-                        <h2>You are not logged in, so sign in or register new user from the above links</h2>
+                        <h2 className="pro-head">You are not logged in, so sign in or register new user from the above links</h2>
                     </div>
                 </Fragment>
             )
@@ -20,9 +20,10 @@ class Home extends Component {
                 <Fragment>
                     <AppNavbar/>
                     <div className="homeCenter">
-                        <h2>You are logged in as {this.context.currentUser}</h2>
-                        <h2>Your email : {this.context.currentEmail}</h2>
+                        <h2>Hello Mr {this.context.currentUser}</h2>
+                        <h4>Your email : {this.context.currentEmail}</h4>
                     </div>
+                   
                 </Fragment>
             )
         }

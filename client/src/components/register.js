@@ -67,9 +67,9 @@ class Register extends Component {
             ) : null }
 
             <Form.Group>
-              <h4>Register here...</h4>
+              <h4>Register Here</h4>
             </Form.Group>
-
+             
             <Form.Group controlId="formBasicName">
             <Form.Label>Name</Form.Label>
             <Form.Control name="name" onChange={this.onChange} type="text" placeholder="Name" />
@@ -89,6 +89,8 @@ class Register extends Component {
                   Submit
               </Button>
           </Form>
+              
+             
             </div>
         );
     }

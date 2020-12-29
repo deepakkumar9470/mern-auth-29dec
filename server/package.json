@@ -1,13 +1,13 @@
 {
   "name": "mern-auth",
   "version": "1.0.0",
-  "description": "Mern authentication boilerplate",
+  "description": "Mern Authentication",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js"
   },
-  "author": "Ritul",
+  "author": "Deepak",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
@@ -15,6 +15,7 @@
     "config": "^3.3.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.5"
+    "mongoose": "^5.9.5",
+    "nodemailer": "^6.4.17"
   }
 }
